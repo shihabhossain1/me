@@ -484,8 +484,8 @@ function foliox_tm_load_blogs(){
 			html += '' +
 				'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
 					'<div class="list_inner tilt-effect">' +
-						'<div class="image">' +
-							'<img style="height: 255px;width: 450px;" src="' + image + '" alt="' + imageAlt + '" />' +
+							'<div class="image">' +
+								'<img src="' + image + '" alt="' + imageAlt + '" />' +
 							'<div class="main" data-img-url="' + image + '"></div>' +
 							'<a class="foliox_tm_full_link" href="#"></a>' +
 						'</div>' +
