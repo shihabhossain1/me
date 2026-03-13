@@ -628,6 +628,14 @@ h6 { font-size: 16px; }
 	display: inline-block;
 	margin-bottom: 5px;
 }
+.skills_subtitle{
+	max-width: 680px;
+	margin: 6px auto 0;
+	color: var(--main-color);
+	font-size: 16px;
+	line-height: 1.6;
+}
+.foliox_tm_main_title h2,
 .foliox_tm_main_title h3{
 	font-size: 48px;
 }
@@ -870,34 +878,58 @@ h6 { font-size: 16px; }
 	height: auto;
 	clear: both;
 	display: flex;
-	margin-top: 47px;
+	gap: 32px;
+	margin-top: 40px;
 }
 .foliox_tm_skills .left{
 	width: 50%;
-	padding-right: 67px;
+	padding: 28px 32px 18px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 16px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 .foliox_tm_skills .right{
 	width: 50%;
-	padding-left: 67px;
+	padding: 28px 32px 18px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 16px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+.skills_group_heading{
+	margin-bottom: 6px;
+}
+.skills_group_label{
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.72);
+	font-family: var(--font-family-extra);
 }
 .dodo_progress{
 	width: 100%;
 	height: auto;
 	clear: both;
 	float: left;
-	padding-top: 30px;
+	padding-top: 18px;
 	overflow: hidden;
 }
 .progress_inner{
 	width:100%;
-	margin-bottom:37px;
+	margin-bottom:28px;
 }
 .progress_inner:last-child{
 	margin-bottom: 0px;
 }
 .progress_inner > span{
 	margin:0px 0px 9px 0px;
-	display:block;
+	display:flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
 	text-align:left;
 	position: relative;
 }
@@ -906,9 +938,11 @@ h6 { font-size: 16px; }
 	transform: translateY(10px);
 	display: block;
 	color: #fff;
-	font-size: 18px;
-	font-weight: 500;
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
 	font-family: var(--font-family-extra);
+	flex: 1;
 	
 	-webkit-transition: all .5s ease;
 	   -moz-transition: all .5s ease;
@@ -921,32 +955,32 @@ h6 { font-size: 16px; }
 	transform: translateY(0px);
 }
 .progress_inner span.number{
-	float: right;
-	position: absolute;
-	right: 100%;
-	bottom: -2px;
+	position: static;
 	transition: all 2s cubic-bezier(0.165, 0.840, 0.440, 1.000);  /* IE 10+ */
-	color: var(--extra-color);
-	font-size: 18px;
+	color: #bfe9ff;
+	font-size: 15px;
+	font-weight: 600;
 	font-family: var(--font-family-extra);
 }
 .progress_inner .background{
-	background:#e7e5f1;
+	background: rgba(255, 255, 255, 0.12);
 	width:100%;
 	min-width:100%;
 	position:relative;
-	height:8px;
+	height:6px;
 	border-radius: 50px;
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 .progress_inner .background .bar_in{
-	height:8px;
+	height:6px;
 	width:0px;
 	overflow:hidden;
 	border-top-left-radius: 50px;
 	border-bottom-left-radius: 50px;
 	position: relative;
 	top: 0px;
-	background-color: var(--extra-color);
+	background: linear-gradient(90deg, #61d7ff 0%, #89ffb0 100%);
+	box-shadow: 0 0 12px rgba(97, 215, 255, 0.35);
 }
 .progress_inner .background .bar{
 	width:0px;
@@ -2281,6 +2315,7 @@ input[type=number] {
 	.foliox_tm_button a{padding: 15px 40px;}
 	.foliox_tm_hero .right img{max-width: 400px;max-height: 400px;}
 	.foliox_tm_features .list ul li .title{font-size: 21px;}
+	.foliox_tm_main_title h2,
 	.foliox_tm_main_title h3{font-size: 40px;}
 	.foliox_tm_about .big_image img{max-width: 380px;}
 	.foliox_tm_about .small_image{margin-right: -145px;}
@@ -2336,6 +2371,7 @@ input[type=number] {
 	.foliox_tm_button a{padding: 13px 38px;}
 	.foliox_tm_features .list ul li{width: 50%;}
 	.foliox_tm_main_title span{font-size: 19px;}
+	.foliox_tm_main_title h2,
 	.foliox_tm_main_title h3{font-size: 35px;}
 	.foliox_tm_about .wrapper{flex-direction: column;}
 	.foliox_tm_about .left{width: 100%;margin-bottom: 60px;}
@@ -2346,9 +2382,9 @@ input[type=number] {
 	.foliox_tm_about .big_image{float: left;}
 	.foliox_tm_about{margin-bottom: 165px;}
 	.foliox_tm_counter .counter_list ul li{width: 33.3333%;}
-	.foliox_tm_skills .list{flex-direction: column;}
-	.foliox_tm_skills .left{width: 100%;padding-right: 0px;margin-bottom: 7px;}
-	.foliox_tm_skills .right{width: 100%;padding-left: 0px;}
+	.foliox_tm_skills .list{flex-direction: column;gap: 20px;}
+	.foliox_tm_skills .left{width: 100%;padding: 24px;}
+	.foliox_tm_skills .right{width: 100%;padding: 24px;}
 	.foliox_tm_services .list ul li{width: 50%;}
 	.foliox_tm_resume .wrapper{flex-direction: column;}
 	.foliox_tm_resume .left{width: 100%;padding-right: 0px;margin-bottom: 70px;}
@@ -2376,6 +2412,7 @@ input[type=number] {
 	.foliox_tm_features .list ul li .svg{width: 55px;height: 55px;margin-bottom: 25px;}
 	.foliox_tm_features .list ul li .title{margin-bottom: 18px;}
 	.foliox_tm_main_title span{font-size: 17px;}
+	.foliox_tm_main_title h2,
 	.foliox_tm_main_title h3{font-size: 29px;}
 	.foliox_tm_about .right .list > ul > li{border: none;width: 100%;}
 	.foliox_tm_about .right .item:first-child{padding-bottom: 0px;}
