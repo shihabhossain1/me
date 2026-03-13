@@ -1,0 +1,82 @@
+{
+  "blogs": [
+    {
+      "title": "Designing REST APIs That Scale in Django",
+      "category": "Backend",
+      "date": "February 10, 2024",
+      "author": "Shihab",
+      "image": "img/news/1.jpg",
+      "image_alt": "Django REST API architecture",
+      "excerpt": "A practical guide to designing clean, scalable REST APIs in Django with consistent patterns, pagination, and error handling.",
+      "content": [
+        "Start with consistent resource naming and predictable URL structures. This makes it easier for clients to navigate and for teams to maintain the API over time.",
+        "Use pagination, filtering, and ordering as first-class features. Pair this with clear error responses and versioning to keep your API stable while it evolves."
+      ]
+    },
+    {
+      "title": "Caching with Redis: Patterns for Django Apps",
+      "category": "Performance",
+      "date": "January 22, 2024",
+      "author": "Shihab",
+      "image": "img/news/2.jpg",
+      "image_alt": "Redis caching for Django",
+      "excerpt": "Use Redis for page, object, and fragment caching to speed up Django apps without sacrificing correctness.",
+      "content": [
+        "Choose the right caching layer for each use case: full-page for public content, fragment for complex templates, and object caching for expensive queries.",
+        "Always pair caching with safe invalidation strategies. Use cache keys with versioning to avoid serving stale data after deploys."
+      ]
+    },
+    {
+      "title": "HTMX for Server-Driven Interfaces",
+      "category": "Frontend",
+      "date": "December 18, 2023",
+      "author": "Shihab",
+      "image": "img/news/3.jpg",
+      "image_alt": "HTMX server-driven UI",
+      "excerpt": "Build fast, interactive interfaces with minimal JavaScript by using HTMX and server-rendered HTML.",
+      "content": [
+        "HTMX keeps complexity low by letting the server return HTML fragments for dynamic updates. This reduces client-side state management.",
+        "Combine HTMX with Django templates and partials to create responsive, maintainable UI flows."
+      ]
+    },
+    {
+      "title": "Vue.js Architecture for Admin Dashboards",
+      "category": "Frontend",
+      "date": "November 06, 2023",
+      "author": "Shihab",
+      "image": "img/about/service-02.png",
+      "image_alt": "Vue.js admin dashboard UI",
+      "excerpt": "A structure-first approach to building maintainable admin dashboards with Vue.js components.",
+      "content": [
+        "Create a solid foundation with reusable layout components and a clear folder structure. Keep data fetching separate from UI concerns.",
+        "Define consistent design tokens and component patterns to keep the dashboard cohesive as it grows."
+      ]
+    },
+    {
+      "title": "Deploying Django with Nginx and Gunicorn",
+      "category": "DevOps",
+      "date": "October 14, 2023",
+      "author": "Shihab",
+      "image": "img/about/service-01.png",
+      "image_alt": "Django deployment with Nginx",
+      "excerpt": "A reliable deployment checklist for Django apps on Ubuntu with Nginx, Gunicorn, and systemd.",
+      "content": [
+        "Start with environment isolation using virtualenv, secure settings, and a production-ready configuration for static and media files.",
+        "Use systemd services for Gunicorn and configure Nginx as a reverse proxy for performance and security."
+      ]
+    },
+    {
+      "title": "Secure Authentication Flows for Web Apps",
+      "category": "Security",
+      "date": "September 03, 2023",
+      "author": "Shihab",
+      "image": "img/news/2.jpg",
+      "image_alt": "Secure authentication for web apps",
+      "excerpt": "Build secure authentication with strong password policies, session protection, and user-friendly recovery flows.",
+      "content": [
+        "Enforce strong passwords, use secure hashing, and limit login attempts. Pair with MFA when possible for sensitive applications.",
+        "Implement session rotation and secure cookie settings. Always provide clear, safe account recovery experiences."
+      ]
+    }
+  ]
+}

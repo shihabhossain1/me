@@ -21,6 +21,7 @@ jQuery(document).ready(function(){
 	foliox_tm_imgtosvg();
 	foliox_tm_popup();
 	foliox_tm_data_images();
+	foliox_tm_load_blogs();
 	foliox_tm_contact_form();
 	foliox_tm_owl_carousel();
 	foliox_tm_totop();
@@ -117,7 +118,7 @@ function foliox_tm_modalbox_news(){
 	var button			= jQuery('.foliox_tm_news .foliox_tm_full_link,.foliox_tm_news .details .title a');
 	var closePopup		= modalBox.find('.close');
 	
-	button.on('click',function(){
+	button.off().on('click',function(){
 		var element 	= jQuery(this);
 		var parent 		= element.closest('.list_inner');
 		var content 	= parent.find('.news_hidden_details').html();
@@ -419,6 +420,113 @@ function foliox_tm_data_images(){
 		var url				= element.data('img-url');
 		element.css({backgroundImage: 'url('+url+')'});
 	});
+}
+
+// -----------------------------------------------------
+// -----------------    BLOG LIST    -------------------
+// -----------------------------------------------------
+
+function foliox_tm_load_blogs(){
+	
+	"use strict";
+	
+	var list = jQuery('#blog_list');
+	if(!list.length){
+		return;
+	}
+
+	function escapeHtml(value){
+		return String(value)
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/\"/g, '&quot;')
+			.replace(/'/g, '&#39;');
+	}
+
+	function buildParagraphs(paragraphs){
+		if(!Array.isArray(paragraphs)){
+			return '';
+		}
+		return paragraphs.map(function(text){
+			return '<p>' + escapeHtml(text) + '</p>';
+		}).join('');
+	}
+
+	function getInlineBlogs(){
+		var script = document.getElementById('blog-data');
+		if(!script){
+			return null;
+		}
+		try{
+			return JSON.parse(script.textContent);
+		}catch(error){
+			return null;
+		}
+	}
+
+	function renderBlogs(payload){
+		if(!payload || !Array.isArray(payload.blogs) || !payload.blogs.length){
+			list.html('<li class="news_loading">No posts available yet.</li>');
+			return;
+		}
+		var html = '';
+		payload.blogs.forEach(function(blog, index){
+			var delay = ((index % 3) * 0.2).toFixed(1);
+			var image = blog.image ? escapeHtml(blog.image) : 'img/news/1.jpg';
+			var imageAlt = blog.image_alt ? escapeHtml(blog.image_alt) : 'Blog post cover';
+			var title = escapeHtml(blog.title || 'Blog Post');
+			var category = escapeHtml(blog.category || 'Blog');
+			var date = escapeHtml(blog.date || '');
+			var author = escapeHtml(blog.author || 'Shihab');
+			var excerpt = blog.excerpt ? '<p>' + escapeHtml(blog.excerpt) + '</p>' : '';
+			var paragraphs = buildParagraphs(blog.content);
+			html += '' +
+				'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
+					'<div class="list_inner tilt-effect">' +
+						'<div class="image">' +
+							'<img style="height: 255px;width: 450px;" src="' + image + '" alt="' + imageAlt + '" />' +
+							'<div class="main" data-img-url="' + image + '"></div>' +
+							'<a class="foliox_tm_full_link" href="#"></a>' +
+						'</div>' +
+						'<div class="details">' +
+							'<div class="meta">' +
+								'<p><a href="#">' + author + '</a> &middot; ' + category + ' &middot; ' + date + '</p>' +
+							'</div>' +
+							'<div class="title">' +
+								'<h3><a href="#">' + title + '</a></h3>' +
+							'</div>' +
+						'</div>' +
+						'<div class="news_hidden_details">' +
+							'<div class="news_popup_informations">' +
+								'<div class="text">' +
+									excerpt +
+									paragraphs +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</li>';
+		});
+		list.html(html);
+		foliox_tm_data_images();
+		foliox_tm_modalbox_news();
+	}
+
+	list.html('<li class="news_loading">Loading posts...</li>');
+
+	jQuery.getJSON('data/blogs.json')
+		.done(function(payload){
+			renderBlogs(payload);
+		})
+		.fail(function(){
+			var inlinePayload = getInlineBlogs();
+			if(inlinePayload){
+				renderBlogs(inlinePayload);
+				return;
+			}
+			list.html('<li class="news_loading">Unable to load posts right now.</li>');
+		});
 }
 
 // -----------------------------------------------------
