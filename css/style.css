@@ -35,10 +35,18 @@ a{
 	text-decoration: none;
 }
 :root{
-    --main-color: #b4afc6;
+    --main-color: #cfc9de;
     --extra-color: #00c0ff;
     --font-family-main: 'Open Sans', sans-serif;
     --font-family-extra: 'Poppins', sans-serif;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+	outline: 3px solid #7ad8ff;
+	outline-offset: 3px;
+	border-radius: 8px;
 }
 html {
 	overflow-x: hidden;
@@ -56,7 +64,15 @@ body{
 	font-weight: 400;
 	background-color: #1e1345;
 	color: var(--main-color);
-	background-image: url(..//img/hero/1.jpg);
+	background-image: url(../img/hero/1.webp);
+}
+@media (prefers-reduced-motion: reduce){
+	*{
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 
 svg{
@@ -351,6 +367,16 @@ h6 { font-size: 16px; }
 	padding: 0px 0px;
 	font-weight: 500;
 }
+.foliox_tm_mobile_menu .dropdown .dropdown_inner ul li .primary_call_cta{
+	margin-top: 10px;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: var(--extra-color);
+	font-family: var(--font-family-extra);
+	font-size: 14px;
+	font-weight: 600;
+	box-shadow: 0 10px 24px rgba(0,192,255,.28);
+}
 .foliox_tm_mobile_menu .hamburger-inner, 
 .foliox_tm_mobile_menu .hamburger-inner:after, 
 .foliox_tm_mobile_menu .hamburger-inner:before{
@@ -471,6 +497,25 @@ h6 { font-size: 16px; }
 .foliox_tm_header .social ul li a:hover{
 	color: var(--extra-color);
 }
+.foliox_tm_header .header_cta{
+	margin-left: 18px;
+}
+.foliox_tm_header .header_cta a{
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 999px;
+	background: var(--extra-color);
+	color: #fff;
+	font-family: var(--font-family-extra);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	transition: all .3s ease;
+}
+.foliox_tm_header .header_cta a:hover{
+	background: #fff;
+	color: #1e1345;
+}
 
 /*---------------------------------------------------*/
 /*	04) FOLIOX HERO
@@ -550,6 +595,21 @@ h6 { font-size: 16px; }
 }
 .foliox_tm_button a:hover span{
 	color: #000;
+}
+.foliox_tm_button .primary_call_cta{
+	box-shadow: 0 14px 30px rgba(0,192,255,.28);
+}
+.about_secondary_cta{
+	margin-top: 14px;
+	font-size: 15px;
+}
+.about_secondary_cta a{
+	color: #d8d3e6;
+	border-bottom: 1px solid rgba(216,211,230,.35);
+}
+.about_secondary_cta a:hover{
+	color: var(--extra-color);
+	border-bottom-color: var(--extra-color);
 }
 .foliox_tm_hero .right{
 	width:50%;
@@ -1351,6 +1411,14 @@ h6 { font-size: 16px; }
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
+.foliox_tm_portfolio .portfolio_list ul li .details .project_code_url{
+	margin-left: 8px;
+	background: rgba(0, 192, 255, .18);
+	border-color: rgba(0, 192, 255, .45);
+}
+.foliox_tm_portfolio .portfolio_list ul li .details .project_code_url:before{
+	content: '\f308';
+}
 .foliox_tm_portfolio .portfolio_list ul li .details .project_live_url:before{
 	content: '\f08e';
 	font-family: "fontello";
@@ -1698,7 +1766,7 @@ h6 { font-size: 16px; }
 	margin-bottom: 60px;
 }
 .foliox_tm_testimonials .text p{
-	font-size: 30px;
+	font-size: 25px;
 	font-style: italic;
 	line-height: 1.6;
 	color: #fff;
@@ -1792,7 +1860,10 @@ h6 { font-size: 16px; }
 	float: left;
 	background-color: #432d92;
 	border-radius: 12px;
-	padding: 70px 0px;
+	padding: 52px 0px;
+}
+.foliox_tm_partners .foliox_tm_main_title{
+	margin-bottom: 38px;
 }
 .foliox_tm_partners .partners_list ul{
 	margin: 0px;
@@ -2062,7 +2133,7 @@ h6 { font-size: 16px; }
 }
 .foliox_tm_contact .left .short a{
 	text-decoration: none;
-	color: #b4afc6;
+	color: #dfd9eb;
 	
 	-webkit-transition: all .3s ease;
 	   -moz-transition: all .3s ease;
@@ -2142,6 +2213,11 @@ input[type=number] {
 	outline: none;
 	border-color: rgba(255,255,255,.5);
 }
+.foliox_tm_contact input:focus-visible,
+.foliox_tm_contact .message_area textarea:focus-visible{
+	border-color: #7ad8ff;
+	box-shadow: 0 0 0 3px rgba(122,216,255,.25);
+}
 .foliox_tm_contact .empty_notice{
 	color: #F52225;
 	margin-bottom: 7px;
@@ -2159,6 +2235,43 @@ input[type=number] {
 	margin-bottom: 7px;
 	text-align: left;
 	font-weight: 500;
+}
+.contact_quick_actions{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	justify-content: center;
+	margin-top: 30px;
+}
+.quick_action_btn{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 24px;
+	border-radius: 999px;
+	font-family: var(--font-family-extra);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	border: 1px solid transparent;
+	transition: all .25s ease;
+}
+.quick_action_btn.primary{
+	background: var(--extra-color);
+	color: #fff;
+}
+.quick_action_btn.primary:hover{
+	background: #fff;
+	color: #1e1345;
+}
+.quick_action_btn.secondary{
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.25);
+	color: #fff;
+}
+.quick_action_btn.secondary:hover{
+	background: rgba(255, 255, 255, 0.16);
+	border-color: rgba(255, 255, 255, 0.45);
 }
 
 /*---------------------------------------------------*/
@@ -2299,13 +2412,26 @@ input[type=number] {
 	margin-bottom: 0;
 }
 .footer_links a{
-	color: var(--main-color);
+	color: #ded8ea;
 	transition: all .3s ease;
 	border-bottom: 1px solid transparent;
 }
 .footer_links a:hover{
 	color: var(--extra-color);
 	border-bottom-color: rgba(0, 192, 255, 0.4);
+}
+.footer_links .primary_call_cta{
+	display: inline-block;
+	padding: 8px 14px;
+	border-radius: 999px;
+	background: rgba(0,192,255,.18);
+	border: 1px solid rgba(0,192,255,.48);
+	color: #e6f9ff;
+}
+.footer_links .primary_call_cta:hover{
+	color: #fff;
+	background: rgba(0,192,255,.3);
+	border-bottom-color: transparent;
 }
 .footer_social{
 	list-style: none;
@@ -2365,6 +2491,29 @@ input[type=number] {
 .footer_note{
 	color: rgba(255, 255, 255, 0.6);
 	font-size: 14px;
+}
+.whatsapp_quick_button{
+	position: fixed;
+	right: 78px;
+	bottom: 24px;
+	z-index: 11;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 14px;
+	border-radius: 999px;
+	background: #25D366;
+	color: #fff;
+	font-family: var(--font-family-extra);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	box-shadow: 0 12px 28px rgba(37, 211, 102, 0.28);
+	transition: all .25s ease;
+}
+.whatsapp_quick_button:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 16px 30px rgba(37, 211, 102, 0.34);
 }
 .foliox_tm_copyright p{
 	font-family: var(--font-family-extra);
@@ -2496,6 +2645,7 @@ input[type=number] {
 	.foliox_tm_header .logo img{max-width: 160px;max-height: 60px;}
 	.foliox_tm_header.animate .logo img{max-width: 140px;}
 	.foliox_tm_header .menu ul li{margin-right: 30px;}
+	.foliox_tm_header .header_cta a{padding: 9px 16px;font-size: 13px;}
 	.foliox_tm_hero .name{font-size: 75px;margin-bottom: 14px;}
 	.foliox_tm_hero .job{font-size: 20px;margin-bottom: 15px;}
 	.foliox_tm_button a{padding: 15px 40px;}
@@ -2599,6 +2749,8 @@ input[type=number] {
 	.footer_brand_col{grid-column: span 1;}
 	.footer_bottom{flex-direction: column;align-items: flex-start;}
 	.footer_social a{width: 40px;height: 40px;}
+	.whatsapp_quick_button{right: 18px;bottom: 18px;padding: 10px 12px;}
+	.whatsapp_quick_button span{display: none;}
 }
 @media (max-width: 768px) {
 	.foliox_tm_hero .name{font-size: 50px;margin-bottom: 8px;}

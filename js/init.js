@@ -481,14 +481,14 @@ function foliox_tm_load_blogs(){
 			var author = escapeHtml(blog.author || 'Shihab');
 			var excerpt = blog.excerpt ? '<p>' + escapeHtml(blog.excerpt) + '</p>' : '';
 			var paragraphs = buildParagraphs(blog.content);
-			html += '' +
-				'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
-					'<div class="list_inner tilt-effect">' +
-							'<div class="image">' +
-								'<img src="' + image + '" alt="' + imageAlt + '" />' +
-							'<div class="main" data-img-url="' + image + '"></div>' +
-							'<a class="foliox_tm_full_link" href="#"></a>' +
-						'</div>' +
+				html += '' +
+					'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
+						'<div class="list_inner tilt-effect">' +
+								'<div class="image">' +
+									'<img loading="lazy" decoding="async" src="' + image + '" alt="' + imageAlt + '" />' +
+								'<div class="main" data-img-url="' + image + '"></div>' +
+								'<a class="foliox_tm_full_link" href="#"></a>' +
+							'</div>' +
 						'<div class="details">' +
 							'<div class="meta">' +
 								'<p><a href="#">' + author + '</a> &middot; ' + category + ' &middot; ' + date + '</p>' +
