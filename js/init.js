@@ -16,6 +16,7 @@ jQuery(document).ready(function(){
 	foliox_tm_modalbox_news();
 	foliox_tm_modalbox_portfolio();
 	foliox_tm_portfolio();
+	foliox_tm_project_proof();
 	progress_by_frenify();
 	foliox_tm_cursor();
 	foliox_tm_imgtosvg();
@@ -206,6 +207,128 @@ function foliox_tm_portfolio(){
 }
 
 // -------------------------------------------------
+// ---------------- PROJECT PROOF ------------------
+// -------------------------------------------------
+
+function foliox_tm_project_proof(){
+
+	"use strict";
+
+	var projectProof = {
+		"No Task Left": {
+			role: "Full-Stack Developer",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Launched production-ready content and utility workflows for daily users.",
+			status: "live"
+		},
+		"Listeg": {
+			role: "Backend Lead",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Delivered lead capture and pipeline workflows for sales operations.",
+			status: "live"
+		},
+		"WorkThinker": {
+			role: "Full-Stack Developer",
+			stack: "Python, Django, DRF, Vue.js, Redis",
+			outcome: "Built API-driven earning features and dashboard modules for scale.",
+			status: "live"
+		},
+		"LeadsFriday": {
+			role: "Backend Developer",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Implemented lead management APIs and admin controls for teams.",
+			status: "live"
+		},
+		"10 Minute Program": {
+			role: "Backend Developer",
+			stack: "Python, Django, DRF, Redis, PostgreSQL",
+			outcome: "Shipped core LMS APIs and course delivery workflows in production.",
+			status: "live"
+		},
+		"Mohuls LMS": {
+			role: "Backend Developer",
+			stack: "Python, Django, DRF, PostgreSQL, Linux",
+			outcome: "Delivered stable LMS backend and reporting functionality for operations.",
+			status: "live"
+		},
+		"Swiss EcoShare": {
+			role: "Full-Stack Developer",
+			stack: "Python, Django, Vue.js, PostgreSQL",
+			outcome: "Improved booking flow reliability from search to reservation.",
+			status: "live"
+		},
+		"CourseMeister": {
+			role: "Backend Developer",
+			stack: "Python, Django, DRF, PostgreSQL",
+			outcome: "Built reusable LMS modules for course and progress management.",
+			status: "live"
+		},
+		"DataSoft School": {
+			role: "Backend Developer",
+			stack: "Python, Django, DRF, PostgreSQL",
+			outcome: "Delivered course management features and production support updates.",
+			status: "live"
+		},
+		"HR System": {
+			role: "Product Engineer",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Employee records, attendance, and approval workflows in active build.",
+			status: "in_progress"
+		},
+		"AffiliateLift": {
+			role: "Product Engineer",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Affiliate tracking, commission rules, and reporting modules in progress.",
+			status: "in_progress"
+		},
+		"GoVoucher": {
+			role: "Product Engineer",
+			stack: "Python, Django, DRF, Vue.js, PostgreSQL",
+			outcome: "Voucher lifecycle and merchant deal workflows in active development.",
+			status: "in_progress"
+		}
+	};
+
+	function escapeHtml(value){
+		return String(value)
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/\"/g, '&quot;')
+			.replace(/'/g, '&#39;');
+	}
+
+	jQuery('.foliox_tm_portfolio .portfolio_list ul li .list_inner').each(function(){
+		var card = jQuery(this);
+		var title = jQuery.trim(card.find('.details h3').first().text());
+		var proof = projectProof[title];
+
+		if(!proof){
+			return;
+		}
+
+		var details = card.find('.details');
+		if(!details.find('.project_meta_line').length){
+			var subtitle = details.find('span').first();
+			if(subtitle.length){
+				subtitle.after(
+					'<span class="project_meta_line">Role: ' + escapeHtml(proof.role) + '</span>' +
+					'<span class="project_meta_line">Stack: ' + escapeHtml(proof.stack) + '</span>'
+				);
+			}
+		}
+
+		var detailList = card.find('.detailbox ul').first();
+		if(detailList.length && !detailList.find('.project-proof-item').length){
+			var outcomeLabel = proof.status === 'in_progress' ? 'Current Focus' : 'Outcome';
+			detailList.append('<li class="project-proof-item"><span class="first">Role</span><span>' + escapeHtml(proof.role) + '</span></li>');
+			detailList.append('<li class="project-proof-item"><span class="first">Stack</span><span>' + escapeHtml(proof.stack) + '</span></li>');
+			detailList.append('<li class="project-proof-item"><span class="first">' + outcomeLabel + '</span><span>' + escapeHtml(proof.outcome) + '</span></li>');
+		}
+	});
+}
+
+// -------------------------------------------------
 // -------------  PROGRESS BAR  --------------------
 // -------------------------------------------------
 
@@ -240,7 +363,6 @@ function progress_by_frenify(wrapper){
 	element.each(function() {
 		var pWrap = jQuery(this);
 		pWrap.find('.number').css({right:'100%'});
-		console.log(pWrap.find('.number').length);
 		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});	
 	});
 }
@@ -453,18 +575,6 @@ function foliox_tm_load_blogs(){
 		}).join('');
 	}
 
-	function getInlineBlogs(){
-		var script = document.getElementById('blog-data');
-		if(!script){
-			return null;
-		}
-		try{
-			return JSON.parse(script.textContent);
-		}catch(error){
-			return null;
-		}
-	}
-
 	function renderBlogs(payload){
 		if(!payload || !Array.isArray(payload.blogs) || !payload.blogs.length){
 			list.html('<li class="news_loading">No posts available yet.</li>');
@@ -481,14 +591,14 @@ function foliox_tm_load_blogs(){
 			var author = escapeHtml(blog.author || 'Shihab');
 			var excerpt = blog.excerpt ? '<p>' + escapeHtml(blog.excerpt) + '</p>' : '';
 			var paragraphs = buildParagraphs(blog.content);
-			html += '' +
-				'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
-					'<div class="list_inner tilt-effect">' +
-							'<div class="image">' +
-								'<img src="' + image + '" alt="' + imageAlt + '" />' +
-							'<div class="main" data-img-url="' + image + '"></div>' +
-							'<a class="foliox_tm_full_link" href="#"></a>' +
-						'</div>' +
+				html += '' +
+					'<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="' + delay + 's">' +
+						'<div class="list_inner tilt-effect">' +
+								'<div class="image">' +
+									'<img loading="lazy" decoding="async" src="' + image + '" alt="' + imageAlt + '" />' +
+								'<div class="main" data-img-url="' + image + '"></div>' +
+								'<a class="foliox_tm_full_link" href="#"></a>' +
+							'</div>' +
 						'<div class="details">' +
 							'<div class="meta">' +
 								'<p><a href="#">' + author + '</a> &middot; ' + category + ' &middot; ' + date + '</p>' +
@@ -520,11 +630,6 @@ function foliox_tm_load_blogs(){
 			renderBlogs(payload);
 		})
 		.fail(function(){
-			var inlinePayload = getInlineBlogs();
-			if(inlinePayload){
-				renderBlogs(inlinePayload);
-				return;
-			}
 			list.html('<li class="news_loading">Unable to load posts right now.</li>');
 		});
 }
@@ -536,42 +641,70 @@ function foliox_tm_load_blogs(){
 function foliox_tm_contact_form(){
 	
 	"use strict";
-	
-	jQuery(".contact_form #send_message").on('click', function(){
-		
-		var name 		= jQuery(".contact_form #name").val();
-		var email 		= jQuery(".contact_form #email").val();
-		var message 	= jQuery(".contact_form #message").val();
-		var subject 	= jQuery(".contact_form #subject").val();
-		var success     = jQuery(".contact_form .returnmessage").data('success');
-	
-		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
-		//checking for blank fields	
-		if(name===''||email===''||message===''){
-			
-			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
+
+	var form = jQuery('#contact_form');
+	if(!form.length){
+		return;
+	}
+
+	var sendButton = form.find('#send_message');
+	var returnMessage = form.find('.returnmessage');
+	var emptyNotice = form.find('.empty_notice');
+	var success = returnMessage.data('success');
+	var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	form.on('submit', function(event){
+		event.preventDefault();
+
+		var name = jQuery.trim(form.find('#name').val());
+		var email = jQuery.trim(form.find('#email').val());
+		var phone = jQuery.trim(form.find('#phone').val());
+		var subject = jQuery.trim(form.find('#subject').val());
+		var message = jQuery.trim(form.find('#message').val());
+		var website = jQuery.trim(form.find('#website').val());
+
+		emptyNotice.stop(true,true).hide();
+		returnMessage.stop(true,true).hide().empty();
+
+		if(name === '' || email === '' || message === ''){
+			emptyNotice.slideDown(300).delay(1800).slideUp(300);
+			return;
 		}
-		else{
-			// Returns successful data submission message when the entered information is stored in database.
-			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
-				
-				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
-				
-				
-				if(jQuery(".contact_form .returnmessage span.contact_error").length){
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
-				}else{
-					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
-				}
-				
-				if(data===""){
-					jQuery("#contact_form")[0].reset();//To reset form fields on success
-				}
-				
-			});
+
+		if(!emailRegex.test(email)){
+			returnMessage.html("<span class='contact_error'>Please enter a valid email address.</span>").slideDown(300).delay(2600).slideUp(300);
+			return;
 		}
-		return false; 
+
+		sendButton.prop('disabled', true).addClass('is_loading');
+
+		jQuery.post("modal/contact.php",{
+			ajax_name: name,
+			ajax_email: email,
+			ajax_phone: phone,
+			ajax_message: message,
+			ajax_subject: subject,
+			ajax_website: website
+		}, function(data){
+			returnMessage.append(data);
+			if(returnMessage.find('span.contact_error').length){
+				returnMessage.slideDown(300).delay(3000).slideUp(300);
+				return;
+			}
+
+			returnMessage.append("<span class='contact_success'>" + success + "</span>");
+			returnMessage.slideDown(300).delay(3500).slideUp(300);
+			form[0].reset();
+		}).fail(function(){
+			returnMessage.html("<span class='contact_error'>Something went wrong. Please try again or email me directly.</span>").slideDown(300).delay(3200).slideUp(300);
+		}).always(function(){
+			sendButton.prop('disabled', false).removeClass('is_loading');
+		});
+	});
+
+	sendButton.on('click', function(event){
+		event.preventDefault();
+		form.trigger('submit');
 	});
 }
 

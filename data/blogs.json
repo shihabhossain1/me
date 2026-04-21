@@ -44,7 +44,7 @@
       "category": "Frontend",
       "date": "November 06, 2023",
       "author": "Shihab",
-      "image": "img/about/service-02.png",
+      "image": "img/news/3.jpg",
       "image_alt": "Vue.js admin dashboard UI",
       "excerpt": "A structure-first approach to building maintainable admin dashboards with Vue.js components.",
       "content": [
@@ -57,7 +57,7 @@
       "category": "DevOps",
       "date": "October 14, 2023",
       "author": "Shihab",
-      "image": "img/about/service-01.png",
+      "image": "img/news/1.jpg",
       "image_alt": "Django deployment with Nginx",
       "excerpt": "A reliable deployment checklist for Django apps on Ubuntu with Nginx, Gunicorn, and systemd.",
       "content": [
