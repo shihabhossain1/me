@@ -1430,13 +1430,10 @@ h6 { font-size: 16px; }
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
-.foliox_tm_portfolio .portfolio_list ul li .details .project_code_url{
+.foliox_tm_portfolio .portfolio_list ul li .details .project_case_url{
 	margin-left: 8px;
 	background: rgba(0, 192, 255, .18);
 	border-color: rgba(0, 192, 255, .45);
-}
-.foliox_tm_portfolio .portfolio_list ul li .details .project_code_url:before{
-	content: '\f308';
 }
 .foliox_tm_portfolio .portfolio_list ul li .details .project_live_url:before{
 	content: '\f08e';

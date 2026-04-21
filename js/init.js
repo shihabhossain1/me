@@ -575,18 +575,6 @@ function foliox_tm_load_blogs(){
 		}).join('');
 	}
 
-	function getInlineBlogs(){
-		var script = document.getElementById('blog-data');
-		if(!script){
-			return null;
-		}
-		try{
-			return JSON.parse(script.textContent);
-		}catch(error){
-			return null;
-		}
-	}
-
 	function renderBlogs(payload){
 		if(!payload || !Array.isArray(payload.blogs) || !payload.blogs.length){
 			list.html('<li class="news_loading">No posts available yet.</li>');
@@ -642,11 +630,6 @@ function foliox_tm_load_blogs(){
 			renderBlogs(payload);
 		})
 		.fail(function(){
-			var inlinePayload = getInlineBlogs();
-			if(inlinePayload){
-				renderBlogs(inlinePayload);
-				return;
-			}
 			list.html('<li class="news_loading">Unable to load posts right now.</li>');
 		});
 }
